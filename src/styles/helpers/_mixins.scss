@@ -1,0 +1,11 @@
+@mixin centerAnything() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin imageSize($width, $height) {
+  width: $width;
+  height: $height;
+  object-fit: cover;
+}

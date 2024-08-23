@@ -1,0 +1,150 @@
+@use "./helpers/mixins" as *;
+@use "./helpers/variable" as *;
+
+.search-box {
+	position: relative;
+  margin-bottom: 10px;
+
+	.icon {
+		@include imageSize(12px, 12px);
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		background-image: url("../assets/icon/search.png");
+		background-size: 12px;
+		right: 60px;
+	}
+
+	input {
+		width: 100%;
+		border: 1px solid $third-color;
+		border-radius: 5px;
+		padding: 10px 60px;
+	}
+
+	::placeholder {
+		color: #333333;
+    font-size: 16px;
+	}
+}
+
+.list-inbox, .list-task {
+  height: 507px;
+	overflow: auto;
+  position: relative;
+}
+
+.item-inbox {
+	padding: 22px 0;
+	border-bottom: 1px solid $third-color;
+	display: grid;
+	grid-template-columns: 51px auto 10px;
+	gap: 17px;
+	cursor: pointer;
+  margin-right: 5px;
+
+	.wrapper-avatar {
+		display: flex;
+		position: relative;
+
+		.avatar {
+			width: 34px;
+			height: 34px;
+			background-color: $fourth-color;
+			border-radius: 100%;
+			position: absolute;
+			@include centerAnything();
+
+			img {
+				@include imageSize(12px, 12px);
+				filter: invert(27%) sepia(1%) saturate(3041%) hue-rotate(322deg)
+					brightness(97%) contrast(80%);
+			}
+
+			&.active {
+				background-color: $primary-color !important;
+
+				img {
+					filter: none !important;
+				}
+			}
+
+			&.group {
+				right: 0;
+			}
+
+			&.private {
+				left: 50%;
+				transform: translateX(-50%);
+				color: #ffffff;
+				font-size: 16px;
+				font-weight: 700;
+			}
+		}
+	}
+
+	.content {
+		margin-bottom: 11px;
+
+		.head {
+			display: flex;
+			gap: 16px;
+			margin-bottom: 4px;
+
+			.name {
+				color: $primary-color;
+				font-weight: 700;
+				font-size: 16px;
+				word-break: break-word;
+			}
+
+			.time {
+				color: $secondary-color;
+				font-size: 14px;
+				font-weight: 400;
+				white-space: nowrap;
+			}
+		}
+
+		.body {
+			.name,
+			.message {
+				color: $secondary-color;
+				font-size: 14px;
+				font-weight: 400;
+			}
+
+			.name {
+				font-weight: 700;
+			}
+		}
+	}
+
+	.unread {
+		width: 10px;
+		height: 10px;
+		border-radius: 100%;
+		background-color: $indicator-color-3;
+		align-self: self-end;
+		margin-bottom: 11px;
+	}
+
+	&:last-child {
+		border: none;
+	}
+}
+
+@keyframes anim {
+	0% {
+		transform: translateY(0);
+		opacity: 0;
+	}
+	50% {
+		transform: translateY(-20px);
+		opacity: 0.5;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
